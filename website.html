@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Andi Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#070707;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* Background */
+    .bg{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      overflow:hidden;
+    }
+
+    .blob{
+      position:absolute;
+      width:500px;
+      height:500px;
+      border-radius:50%;
+      filter:blur(120px);
+      opacity:.35;
+      animation:float 10s ease-in-out infinite;
+    }
+
+    .blob1{
+      background:#7c3aed;
+      top:-150px;
+      left:-100px;
+    }
+
+    .blob2{
+      background:#06b6d4;
+      bottom:-150px;
+      right:-100px;
+      animation-delay:3s;
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(30px);
+      }
+    }
+
+    /* Navbar */
+    nav{
+      width:100%;
+      padding:25px 10%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,.25);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      background:linear-gradient(90deg,#a855f7,#06b6d4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    nav ul{
+      display:flex;
+      gap:35px;
+      list-style:none;
+    }
+
+    nav a{
+      color:#d1d5db;
+      text-decoration:none;
+      transition:.3s;
+    }
+
+    nav a:hover{
+      color:white;
+    }
+
+    /* Hero */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:120px 10% 50px;
+      gap:70px;
+      flex-wrap:wrap;
+    }
+
+    .hero-text{
+      flex:1;
+      min-width:300px;
+    }
+
+    .hero-text h1{
+      font-size:65px;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero-text span{
+      background:linear-gradient(90deg,#a855f7,#06b6d4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero-text p{
+      color:#9ca3af;
+      font-size:18px;
+      max-width:600px;
+      line-height:1.8;
+      margin-bottom:35px;
+    }
+
+    .btns{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border-radius:14px;
+      text-decoration:none;
+      transition:.3s;
+      font-weight:600;
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg,#9333ea,#06b6d4);
+      color:white;
+      box-shadow:0 0 25px rgba(168,85,247,.4);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 35px rgba(168,85,247,.7);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,.12);
+      color:white;
+      background:rgba(255,255,255,.03);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    /* Card Profile */
+    .hero-card{
+      width:350px;
+      padding:35px;
+      border-radius:30px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(20px);
+      box-shadow:0 0 40px rgba(0,0,0,.5);
+      text-align:center;
+      animation:updown 4s ease-in-out infinite;
+    }
+
+    @keyframes updown{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-15px);
+      }
+    }
+
+    .avatar{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      margin:auto;
+      margin-bottom:20px;
+      background:linear-gradient(135deg,#9333ea,#06b6d4);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:40px;
+      font-weight:700;
+    }
+
+    .hero-card h3{
+      font-size:28px;
+      margin-bottom:8px;
+    }
+
+    .hero-card p{
+      color:#9ca3af;
+    }
+
+    /* Section */
+    section{
+      padding:100px 10%;
+    }
+
+    .section-title{
+      font-size:45px;
+      margin-bottom:50px;
+      text-align:center;
+    }
+
+    .section-title span{
+      background:linear-gradient(90deg,#a855f7,#06b6d4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    /* Skills */
+    .skills{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .skill-box{
+      padding:30px;
+      border-radius:24px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      transition:.4s;
+    }
+
+    .skill-box:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,.07);
+    }
+
+    .skill-box h3{
+      margin-bottom:12px;
+      font-size:22px;
+    }
+
+    .skill-box p{
+      color:#9ca3af;
+      line-height:1.7;
+    }
+    /* Tech Stack */
+    .tech-stack{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    }
+
+    .tech{
+    padding:18px 28px;
+    border-radius:18px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    font-size:18px;
+    font-weight:600;
+    transition:.35s;
+    cursor:pointer;
+    backdrop-filter:blur(10px);
+    }
+
+    .tech:hover{
+    transform:translateY(-8px) scale(1.05);
+    background:linear-gradient(
+        135deg,
+        rgba(168,85,247,.25),
+        rgba(6,182,212,.25)
+    );
+    box-shadow:0 0 30px rgba(168,85,247,.25);
+    }
+
+    /* Progress Skills */
+    .progress-container{
+    max-width:900px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    }
+
+    .progress-card{
+    padding:25px;
+    border-radius:24px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    }
+
+    .progress-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+    }
+
+    .progress-top h3{
+    font-size:20px;
+    }
+
+    .progress-top span{
+    color:#a855f7;
+    font-weight:600;
+    }
+
+    .progress-bar{
+    width:100%;
+    height:14px;
+    background:rgba(255,255,255,.08);
+    border-radius:999px;
+    overflow:hidden;
+    }
+
+    .progress-fill{
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(90deg,#9333ea,#06b6d4);
+    animation:load 2s ease;
+    }
+
+    .html{
+    width:85%;
+    }
+
+    .css{
+    width:98%;
+    }
+
+    .js{
+    width:90%;
+    }
+
+    .csharp{
+    width:93%;
+    }
+
+    .pawn{
+    width:0%;
+    }
+
+    @keyframes load{
+    from{
+        width:0;
+    }
+    }
+
+    /* Projects */
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .project-card{
+      padding:30px;
+      border-radius:28px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      transition:.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .project-card::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(6,182,212,.15));
+      opacity:0;
+      transition:.4s;
+    }
+
+    .project-card:hover::before{
+      opacity:1;
+    }
+
+    .project-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .project-card h3{
+      margin-bottom:15px;
+      font-size:24px;
+      position:relative;
+    }
+
+    .project-card p{
+      color:#9ca3af;
+      line-height:1.8;
+      position:relative;
+    }
+
+    .tags{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:20px;
+      position:relative;
+    }
+
+    .tag{
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:14px;
+    }
+
+    /* Contact */
+    .contact-box{
+      max-width:700px;
+      margin:auto;
+      text-align:center;
+      padding:50px;
+      border-radius:30px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .contact-box p{
+      color:#9ca3af;
+      margin:20px 0 35px;
+      line-height:1.8;
+    }
+
+    footer{
+      padding:30px;
+      text-align:center;
+      color:#6b7280;
+      border-top:1px solid rgba(255,255,255,.05);
+    }
+
+    /* Animation */
+    .reveal{
+      opacity:0;
+      transform:translateY(60px);
+      transition:1s;
+    }
+
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* Testimonials */
+    .testimonial-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    margin-bottom:50px;
+    }
+
+    .testimonial-card{
+    padding:30px;
+    border-radius:24px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.4s;
+    }
+
+    .testimonial-card:hover{
+    transform:translateY(-10px);
+    background:rgba(255,255,255,.06);
+    }
+
+    .stars{
+    color:#facc15;
+    font-size:22px;
+    margin-bottom:15px;
+    }
+
+    .testimonial-card p{
+    color:#d1d5db;
+    line-height:1.8;
+    margin-bottom:20px;
+    }
+
+    .testimonial-card h4{
+    color:#9ca3af;
+    font-weight:500;
+    }
+
+    /* Comment Box */
+    .comment-box{
+    max-width:700px;
+    margin:auto;
+    padding:40px;
+    border-radius:28px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    }
+
+    .comment-box h3{
+    font-size:28px;
+    text-align:center;
+    }
+
+    .comment-box input,
+    .comment-box textarea{
+    width:100%;
+    padding:16px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    background:rgba(255,255,255,.06);
+    color:white;
+    font-size:16px;
+    }
+
+    .comment-box textarea{
+    height:140px;
+    resize:none;
+    }
+
+    .rating-select{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    font-size:32px;
+    color:#facc15;
+    cursor:pointer;
+    }
+
+    .rating-select span{
+    transition:.3s;
+    }
+
+    .rating-select span:hover{
+    transform:scale(1.2);
+    }
+
+    .comment-box button{
+    align-self:center;
+    }
+
+    .comment-box select{
+    width:100%;
+    padding:16px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+
+    background:rgba(255,255,255,.08);
+    color:#ffffff;
+
+    font-size:16px;
+    font-weight:600;
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    cursor:pointer;
+    }
+
+    .comment-box option{
+    background:#111;
+    color:white;
+    }
+
+    .toast{
+    position:fixed;
+    top:30px;
+    right:30px;
+    background:linear-gradient(90deg,#9333ea,#06b6d4);
+    color:white;
+    padding:16px 24px;
+    border-radius:14px;
+    font-weight:600;
+    box-shadow:0 0 30px rgba(168,85,247,.4);
+    z-index:9999;
+    animation:slideIn .4s ease;
+    }
+
+    @keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(100px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+    }
+
+    /* Social Links */
+    .social-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:35px;
+    }
+
+    .social-btn{
+    padding:16px 28px;
+    border-radius:18px;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.35s;
+    backdrop-filter:blur(10px);
+    }
+
+    .social-btn:hover{
+    transform:translateY(-8px) scale(1.05);
+    background:linear-gradient(
+        135deg,
+        rgba(168,85,247,.25),
+        rgba(6,182,212,.25)
+    );
+
+    box-shadow:0 0 30px rgba(168,85,247,.25);
+    }
+
+    @media(max-width:768px){
+
+      nav{
+        padding:20px 7%;
+      }
+
+      nav ul{
+        display:none;
+      }
+
+      .hero-text h1{
+        font-size:45px;
+      }
+
+      .section-title{
+        font-size:35px;
+      }
+
+      .hero{
+        text-align:center;
+      }
+
+      .btns{
+        justify-content:center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Andi.dev</div>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="about">
+
+    <div class="hero-text reveal">
+      <h1>
+        Hi, I'm <span>Andy</span><br>
+        Developer game and build website
+      </h1>
+
+      <p>
+        developer yang fokus membuat system SA:MP, website,
+        UI interaktif, dan berbagai fitur custom dengan desain clean serta modern.
+      </p>
+
+      <div class="btns">
+        <a href="#projects" class="btn btn-primary">Lihat Project</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="hero-card reveal">
+      <div class="avatar">A</div>
+      <h3>Fullstack Developer</h3>
+      <p>
+        SA:MP • Website • UI Design • System Development
+      </p>
+    </div>
+
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+
+    <h2 class="section-title reveal">
+      My <span>Skills</span>
+    </h2>
+
+    <div class="skills">
+
+      <div class="skill-box reveal">
+        <h3>SA:MP Development</h3>
+        <p>
+          custom gamemode,create filterscript, and other feature
+        </p>
+      </div>
+
+      <div class="skill-box reveal">
+        <h3>Frontend Website</h3>
+        <p>
+          create a simple website such as a portofolio, a souvenir website, or a promotional poster website
+          it is definitely responsive,modern website,and according to request
+        </p>
+      </div>
+
+      <div class="skill-box reveal">
+        <h3>Backend System</h3>
+        <p>
+          manage mysql database and other database,login system,and optimizing server feature
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Tech Stack -->
+    <section id="tech">
+
+    <h2 class="section-title reveal">
+        My <span>Tech Stack</span>
+    </h2>
+
+    <div class="tech-stack">
+
+        <div class="tech reveal">C#</div>
+        <div class="tech reveal">kotlin</div>
+        <div class="tech reveal">JavaScript</div>
+        <div class="tech reveal">TypeScript</div>
+        <div class="tech reveal">Pawn</div>
+        <div class="tech reveal">MySQL</div>
+        <div class="tech reveal">Lua</div>
+        <div class="tech reveal">python</div>
+
+    </div>
+
+    </section>
+
+    <!-- Skill Progress -->
+    <section id="progress">
+
+    <h2 class="section-title reveal">
+        My <span>Experience</span>
+    </h2>
+
+    <div class="progress-container">
+
+        <div class="progress-card reveal">
+        <div class="progress-top">
+            <h3>C#</h3>
+            <span>85%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill html"></div>
+        </div>
+        </div>
+
+        <div class="progress-card reveal">
+        <div class="progress-top">
+            <h3>Python</h3>
+            <span>98%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill css"></div>
+        </div>
+        </div>
+
+        <div class="progress-card reveal">
+        <div class="progress-top">
+            <h3>pawno</h3>
+            <span>90%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill js"></div>
+        </div>
+        </div>
+
+        <div class="progress-card reveal">
+        <div class="progress-top">
+            <h3>javascript</h3>
+            <span>93%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill csharp"></div>
+        </div>
+        </div>
+
+        <div class="progress-card reveal">
+        <div class="progress-top">
+            <h3>Bahasa cewe</h3>
+            <span>0%</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill pawn"></div>
+        </div>
+        </div>
+
+    </div>
+
+    </section>
+
+  <!-- Projects -->
+  <section id="projects">
+
+    <h2 class="section-title reveal">
+      My <span>Projects</span>
+    </h2>
+
+    <div class="projects">
+
+      <div class="project-card reveal">
+        <h3>Server Gta Roleplay[SA:MP]</h3>
+        <p>
+          Sistem roleplay lengkap dengan inventory,
+          vehicle, job, property, license, dan UI modern.
+        </p>
+
+        <div class="tags">
+          <div class="tag">Pawn</div>
+          <div class="tag">MySQL</div>
+          <div class="tag">YSI</div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <h3>Modern Landing Page</h3>
+        <p>
+          Website aesthetic dengan animasi smooth,
+          dark mode modern, dan responsive design.
+        </p>
+
+        <div class="tags">
+          <div class="tag">HTML</div>
+          <div class="tag">CSS</div>
+          <div class="tag">JavaScript</div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <h3>Roblox development</h3>
+        <p>
+          Membuat system user interface(UI) seperti tampilan inventory,tampilan login dll.
+          Membuat object seperti pintu rumah
+          Membuat Berbagai genre game.
+        </p>
+
+        <div class="tags">
+          <div class="tag">Luau</div>
+          <div class="tag">Database</div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+    <section id="testimonials">
+
+    <h2 class="section-title reveal">
+        Client <span>Feedback</span>
+    </h2>
+
+    <div
+        class="testimonial-container"
+        id="testimonial-list"
+    >
+    </div>
+
+    </section>
+
+    <!-- Comment Form -->
+    <div class="comment-box reveal">
+
+        <h3>Leave a Comment</h3>
+
+        <input
+        type="text"
+        id="nameInput"
+        placeholder="Your Name"
+        >
+
+        <textarea
+        id="commentInput"
+        placeholder="Write your comment..."
+        ></textarea>
+
+        <select id="ratingInput">
+        <option value="★★★★★">★★★★★</option>
+        <option value="★★★★☆">★★★★☆</option>
+        <option value="★★★☆☆">★★★☆☆</option>
+        </select>
+
+        <button
+        class="btn btn-primary"
+        onclick="sendFeedback()"
+        >
+        Send Feedback
+        </button>
+
+    </div>
+
+    </section>
+
+  <!-- Contact -->
+    <section id="contact">
+
+    <div class="contact-box reveal">
+
+        <h2 class="section-title">
+        Let's <span>Connect</span>
+        </h2>
+
+        <p>
+        Interested in working together, building systems,
+        or creating modern websites? Feel free to contact me.
+        </p>
+
+        <div class="social-links">
+
+        <a href="https://github.com/andxyz-stecu" target="_blank" class="social-btn">
+            GitHub
+        </a>
+
+        <a href="https://discord.gg/9TvVMkES" target="_blank" class="social-btn">
+            Discord
+        </a>
+
+        <a href="https://wa.me/62895712650609" target="_blank" class="social-btn">
+            WhatsApp
+        </a>
+
+        <a href="mailto:softwareandi123@gmail.com" class="social-btn">
+            Email
+        </a>
+
+        </div>
+
+    </div>
+
+    </section>
+
+  <footer>
+    © 2026 Andi Developer. All rights reserved.
+  </footer>
+
+    <script>
+
+    // Reveal Animation
+    const reveals = document.querySelectorAll('.reveal');
+
+    window.addEventListener('scroll', () => {
+
+        reveals.forEach(reveal => {
+
+        const windowHeight = window.innerHeight;
+        const revealTop = reveal.getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if(revealTop < windowHeight - revealPoint){
+            reveal.classList.add('active');
+        }
+
+        });
+
+    });
+
+    // Add Feedback Card
+    function addFeedback(data){
+
+        const testimonial = `
+        <div class="testimonial-card reveal active">
+
+            <div class="stars">${data.rating}</div>
+
+            <p>
+            "${data.comment}"
+            </p>
+
+            <h4>— ${data.name}</h4>
+
+        </div>
+        `;
+
+        document
+        .getElementById('testimonial-list')
+        .innerHTML += testimonial;
+
+    }
+
+    // Send Feedback
+    let cooldown = false;
+
+    function sendFeedback(){
+
+    // Cooldown 30 menit
+    const cooldownTime = 30 * 60 * 1000;
+
+    // Ambil waktu terakhir comment
+    const lastCommentTime =
+        localStorage.getItem('lastCommentTime');
+
+    const now = Date.now();
+
+    // Check cooldown
+    if(lastCommentTime){
+
+        const timePassed =
+        now - parseInt(lastCommentTime);
+
+        const timeLeft =
+        cooldownTime - timePassed;
+
+        if(timeLeft > 0){
+
+        const minutes =
+            Math.floor(timeLeft / 60000);
+
+        const seconds =
+            Math.floor((timeLeft % 60000) / 1000);
+
+        const toast = document.createElement('div');
+
+        toast.className = 'toast';
+
+        toast.innerText =
+            `You can comment again in ${minutes}m ${seconds}s`;
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+
+        return;
+        }
+
+    }
+
+    const name =
+        document.getElementById('nameInput').value;
+
+    const comment =
+        document.getElementById('commentInput').value;
+
+    const rating =
+        document.getElementById('ratingInput').value;
+
+    if(name === '' || comment === ''){
+        alert('Please fill all fields!');
+        return;
+    }
+
+    const feedback = {
+        name,
+        comment,
+        rating
+    };
+
+    // Simpan comment
+    let feedbacks =
+        JSON.parse(localStorage.getItem('feedbacks')) || [];
+
+    feedbacks.push(feedback);
+
+    localStorage.setItem(
+        'feedbacks',
+        JSON.stringify(feedbacks)
+    );
+
+    // Simpan waktu comment
+    localStorage.setItem(
+        'lastCommentTime',
+        now
+    );
+
+    // Reset form
+    document.getElementById('nameInput').value = '';
+    document.getElementById('commentInput').value = '';
+
+    // Toast
+    const toast = document.createElement('div');
+
+    toast.className = 'toast';
+
+    toast.innerText =
+        'Feedback will appear in 5 seconds...';
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+
+    // Delay posting 5 detik
+    setTimeout(() => {
+
+        addFeedback(feedback);
+
+    }, 5000);
+
+    }
+    // Load feedback saat refresh
+    window.onload = function(){
+
+  // Dummy Comments
+    const dummyFeedbacks = [
+
+        {
+        name: "Rizky Developer",
+        comment: "Andi sangat cepat dan rapih dalam membuat system SA:MP. UI nya modern dan logic nya clean.",
+        rating: "★★★★★"
+        },
+
+        {
+        name: "Fajar Client",
+        comment: "Website yang dibuat aesthetic banget. Responsive dan animasinya smooth.",
+        rating: "★★★★★"
+        },
+
+        {
+        name: "Daniel RP Owner",
+        comment: "System inventory dan property sangat bagus. Recommended buat server roleplay.",
+        rating: "★★★★☆"
+        }
+
+    ];
+
+    // Tampilkan dummy comment
+    dummyFeedbacks.forEach(feedback => {
+        addFeedback(feedback);
+    });
+
+    // Ambil comment user
+    let feedbacks =
+        JSON.parse(localStorage.getItem('feedbacks')) || [];
+
+    // Tampilkan comment user
+    feedbacks.forEach(feedback => {
+        addFeedback(feedback);
+    });
+
+    }
+
+    </script>
+
+</body>
+</html>
